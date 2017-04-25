@@ -15,8 +15,6 @@ AlbumIndexController.$inject = ['$http'];
 function AlbumsIndexController ( $http ) {
   var vm = this;
 
-  // inside controller
-
   $http({
     method: 'GET',
     url: 'api/albums'
@@ -29,15 +27,15 @@ function AlbumsIndexController ( $http ) {
 
   vm.createAlbum = function() {
 
-    $http({
-      method: 'POST',
-      url: 'api/albums',
-      data: {string}
-    }).then(function successCallback(response) {
-      // stuff
-    }, function errorCallback(response) {
-      console.log('There was an error getting the data', response);
-    });
+  $http({
+    method: 'POST',
+    url: 'api/albums',
+    data: vm.newAlbum //database
+  }).then(function successCallback(response) {
+    vm.albums.push(response.data);
+  }, function errorCallback(response) {
+    console.log('There was an error getting the data', response);
+  });
 
   }
 
